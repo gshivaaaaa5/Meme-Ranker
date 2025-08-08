@@ -43,22 +43,15 @@ For Software:
 
 ### Project Documentation
 For Software:
-
 # Screenshots (Add at least 3)
-
-*Add cap<img width="1915" height="1079" alt="Screenshot 2025-08-08 231308" src="https://github.com/user-attachments/assets/5b150a78-a4ad-448f-9698-616ef17a4386" />
+<img width="1915" height="1079" alt="Screenshot 2025-08-08 231308" src="https://github.com/user-attachments/assets/10ecdd23-a059-4ae6-9c14-416efc8e7ed8" />
+*Add <img width="1915" height="1079" alt="Screenshot 2025-08-08 231308" src="https://github.com/user-attachments/assets/3b4ee238-0fed-454f-a18b-beed6e6f2b45" />
+cap<img width="1915" height="1079" alt="Screenshot 2025-08-08 231308" src="https://github.com/user-attachments/assets/5b150a78-a4ad-448f-9698-616ef17a4386" />
 The backend uses sentiment analysis to detect text and rate the meme out of 100
-
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
-
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
-
 # Diagrams
 Of course. Here is a detailed caption explaining the diagram you selected.
 
-Caption for the Diagram
+
 
 <img width="2048" height="2048" alt="Gemini_Generated_Image_d766h8d766h8d766 (1)" src="https://github.com/user-attachments/assets/fae458ef-ce6b-45e9-a97a-8af3dc60483e" />
 
@@ -98,9 +91,9 @@ For Hardware:
 [Add any extra demo materials/links]
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- Shivadev g: Lead Development, Prompt Engineering, Frontend (HTML, CSS,JS), Documentation,
+- Neeraj k r:Project Vision,Backend Logic (Elask), Frontend (HTML, CSS,js), Testing, Debugging
+
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
