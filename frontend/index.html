@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MoistMeter - Meme Analyzer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #00ffff;
+      margin-bottom: 1rem;
+    }
+
+    .card {
+      background: #222;
+      padding: 1.5rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 0 12px #0ff3;
+    }
+
+    input[type="file"] {
+      margin-bottom: 1rem;
+    }
+
+    .result {
+      margin-top: 1rem;
+      background: #333;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .loading {
+      color: #0ff;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .score-bar {
+      height: 20px;
+      border-radius: 10px;
+      background: #555;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .score-fill {
+      height: 100%;
+      background: linear-gradient(to right, #00f0ff, #00ffa2);
+      width: 0%;
+      transition: width 1s ease;
+    }
+
+    .error {
+      color: red;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧼 MoistMeter - Meme Analyzer</h1>
+  <div class="card">
+    <input type="file" id="imageUpload" accept="image/*"/>
+    <button id="analyzeButton">Analyze Meme</button>
+
+    <div class="loading hidden" id="loading">Analyzing... please wait.</div>
+    <div class="error hidden" id="uploadError">Error uploading image</div>
+
+    <div class="result hidden" id="resultSection">
+      <p><strong>Extracted Text:</strong> <span id="extractedText"></span></p>
+      <p><strong>Sentiment:</strong> <span id="sentimentLabel"></span></p>
+      <p><strong>Template:</strong> <span id="templateName"></span> (<span id="templateConfidence"></span>%)</p>
+      <p><strong>Moist Score:</strong> <span id="moistScore"></span>/100</p>
+      <div class="score-bar">
+        <div class="score-fill" id="scoreFill"></div>
+      </div>
+      <p><strong>Verdict:</strong> <span id="moistComment"></span></p>
+    </div>
+  </div>
+
+  <script>
+    const imageUpload = document.getElementById("imageUpload");
+    const analyzeButton = document.getElementById("analyzeButton");
+    const loading = document.getElementById("loading");
+    const uploadError = document.getElementById("uploadError");
+    const resultSection = document.getElementById("resultSection");
+
+    const extractedText = document.getElementById("extractedText");
+    const sentimentLabel = document.getElementById("sentimentLabel");
+    const templateName = document.getElementById("templateName");
+    const templateConfidence = document.getElementById("templateConfidence");
+    const moistScore = document.getElementById("moistScore");
+    const moistComment = document.getElementById("moistComment");
+    const scoreFill = document.getElementById("scoreFill");
+
+    let selectedFile = null;
+
+    imageUpload.addEventListener("change", (event) => {
+      selectedFile = event.target.files[0];
+      uploadError.classList.add("hidden");
+      resultSection.classList.add("hidden");
+    });
+
+    analyzeButton.addEventListener("click", () => {
+      if (selectedFile) {
+        analyzeImage(selectedFile);
+      } else {
+        uploadError.textContent = "Please upload a meme image first.";
+        uploadError.classList.remove("hidden");
+      }
+    });
+
+    function setLoading(isLoading) {
+      if (isLoading) {
+        loading.classList.remove("hidden");
+        resultSection.classList.add("hidden");
+        uploadError.classList.add("hidden");
+      } else {
+        loading.classList.add("hidden");
+      }
+    }
+
+    function updateResultsUI(data) {
+      extractedText.textContent = data.extractedText;
+      sentimentLabel.textContent = data.sentimentLabel;
+      templateName.textContent = data.templateName;
+      templateConfidence.textContent = data.templateConfidence.toFixed(2);
+      moistScore.textContent = data.moist_score.toFixed(1);
+      moistComment.textContent = data.moist_comment;
+      scoreFill.style.width = `${data.moist_score}%`;
+      resultSection.classList.remove("hidden");
+    }
+
+    function analyzeImage(file) {
+      setLoading(true);
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      fetch("http://localhost:5000/analyze", {
+        method: "POST",
+        body: formData,
+      })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Server error: " + response.statusText);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.error) {
+          throw new Error(data.error);
+        }
+
+        updateResultsUI({
+          moist_score: data.moist_score,
+          moist_comment: data.moist_comment,
+          extractedText: data.extractedText,
+          sentimentLabel: data.sentimentLabel,
+          templateName: data.templateName,
+          templateConfidence: data.templateConfidence,
+        });
+
+        setLoading(false);
+      })
+      .catch((err) => {
+        uploadError.textContent = err.message || "Something went wrong.";
+        uploadError.classList.remove("hidden");
+        setLoading(false);
+      });
+    }
+  </script>
+</body>
+</html>
