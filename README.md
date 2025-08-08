@@ -45,8 +45,9 @@ For Software:
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+
+*Add cap<img width="1915" height="1079" alt="Screenshot 2025-08-08 231308" src="https://github.com/user-attachments/assets/5b150a78-a4ad-448f-9698-616ef17a4386" />
+The backend uses sentiment analysis to detect text and rate the meme out of 100
 
 ![Screenshot2](Add screenshot 2 here with proper name)
 *Add caption explaining what this shows*
