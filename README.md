@@ -5,35 +5,33 @@
 
 
 ## Basic Details
-### Team Name: [TRASH]
+### Team Name: TRASH
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: Neeraj K R - MACE
+- Member 2: Shivadev G - MACE
+
 
 ### Project Description
-[2-3 lines about what your project does]
+MoistMeter is a revolutionary AI-powered web application that provides objective, quantitative analysis of memes. It finally settles debates by determining a meme's quality using the highly scientific and completely necessary "Moist Score."
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+For too long, humanity has relied on subjective feelings like "laughter" and "amusement" to judge memes. This leads to chaotic disagreements and a lack of standardized metrics. How can we truly know if a meme is a certified banger or just bone-dry garbage without a number to prove it?
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+We built the MoistMeter, a tool nobody asked for, to solve this non-existent problem. By uploading a meme, users receive a definitive Moist Score calculated with a proprietary (and slightly arbitrary) algorithm, along with extracted text and template analysis. Finally, meme quality is a solved science.
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+- Python, JavaScript, HTML, CSS
+- Flask
+- transformers (openai/clip-vit-base-patch32, cardiffnlp/twitter-roberta-base-sentiment),torch,pytesseract & Pillow (for OCR),TextBlob (as a fallback for sentiment analysis),Flask-Cors
+- Tesseract OCR Engine
 
 For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
+-No Hardware
 
 ### Implementation
 For Software:
@@ -57,8 +55,19 @@ For Software:
 *Add caption explaining what this shows*
 
 # Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
+Of course. Here is a detailed caption explaining the diagram you selected.
+
+Caption for the Diagram
+
+<img width="2048" height="2048" alt="Gemini_Generated_Image_d766h8d766h8d766 (1)" src="https://github.com/user-attachments/assets/fae458ef-ce6b-45e9-a97a-8af3dc60483e" />
+
+Meme Input: This first block represents the beginning of the process, where a user uploads a meme image through the web interface (index.html).
+Feature Extraction: The image is then sent to the backend. This block symbolizes the core analysis where different AI models get to work:
+Tesseract reads the text.
+The Sentiment Model analyzes the tone of the text.
+The CLIP Model identifies the meme's template and confidence.
+Scoring Algorithm: The data from the previous step is fed into this block. It represents the Python logic that takes the sentiment score and the template confidence, applies the 60/40 weighting, and calculates the final "Moist Score."
+Final Score Display: This last block represents the results being displayed back to the user on the webpage, showing the numerical score, the verdict (e.g., "Certified banger"), and other analytics.
 
 For Hardware:
 
