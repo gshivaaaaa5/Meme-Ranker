@@ -36,10 +36,18 @@ For Hardware:
 ### Implementation
 For Software:
 # Installation
-[commands]
+pip install Pillow
+pytesseract
+torch
+transformers
+textblob
 
 # Run
-[commands]
+cd backend
+python app.py
+cd frontend
+python -m http.server 8000
+ 
 
 ### Project Documentation
 For Software:
