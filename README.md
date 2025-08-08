@@ -5,7 +5,7 @@
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: [TRASH]
 
 
 ### Team Members
